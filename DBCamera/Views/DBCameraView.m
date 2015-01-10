@@ -13,7 +13,8 @@
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
-#define previewFrame (CGRect){ 0, 65, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - 138 }
+#define previewFrame (CGRect){ 0, 65, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - (80+65) }
+#define previewFrame_small (CGRect){ 0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height }
 
 // pinch
 #define MAX_PINCH_SCALE_NUM   3.f
@@ -54,8 +55,14 @@
         if ( captureSession ) {
             [_previewLayer setSession:captureSession];
             [_previewLayer setFrame: previewFrame ];
-        } else
-            [_previewLayer setFrame:self.bounds];
+        } else {
+            if (!IS_RETINA_4) {
+                [_previewLayer setFrame: previewFrame_small ];
+            } else {
+                [_previewLayer setFrame: previewFrame ];
+            }
+
+        }
 
         if ( [_previewLayer respondsToSelector:@selector(connection)] ) {
             if ( [_previewLayer.connection isVideoOrientationSupported] )

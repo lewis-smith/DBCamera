@@ -243,8 +243,8 @@ static const CGSize kFilterCellSize = { 75, 90 };
         [_navigationBar setUserInteractionEnabled:YES];
         [_navigationBar addSubview:self.useButton];
         [_navigationBar addSubview:self.retakeButton];
-        if ( !_forceQuadCrop )
-            [_navigationBar addSubview:self.cropButton];
+//        if ( !_forceQuadCrop )
+//            [_navigationBar addSubview:self.cropButton];
     }
     
     return _navigationBar;
